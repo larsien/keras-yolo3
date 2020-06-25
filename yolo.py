@@ -99,6 +99,42 @@ class YOLO(object):
                 score_threshold=self.score, iou_threshold=self.iou)
         return boxes, scores, classes
 
+    def get_best_class(self, image):
+        if self.model_image_size != (None, None):
+            assert self.model_image_size[0]%32 == 0, 'Multiples of 32 required'
+            assert self.model_image_size[1]%32 == 0, 'Multiples of 32 required'
+            boxed_image = letterbox_image(image, tuple(reversed(self.model_image_size)))
+        else:
+            new_image_size = (image.width - (image.width % 32),
+                              image.height - (image.height % 32))
+            boxed_image = letterbox_image(image, new_image_size)
+        image_data = np.array(boxed_image, dtype='float32')
+
+        print(image_data.shape)
+        image_data /= 255.
+        image_data = np.expand_dims(image_data, 0)  # Add batch dimension.
+
+        out_boxes, out_scores, out_classes = self.sess.run(
+            [self.boxes, self.scores, self.classes],
+            feed_dict={
+                self.yolo_model.input: image_data,
+                self.input_image_shape: [image.size[1], image.size[0]],
+                K.learning_phase(): 0
+            })
+
+#         print('Found {} boxes for {}'.format(len(out_boxes), 'img'))
+        
+        best_class = -1
+        best_score = -1
+        best_index = -1
+        for i in range(len(out_boxes)):
+            if out_scores[i] > best_score:
+                best_class = out_classes[i]
+                best_score = out_scores[i]
+                best_index = i
+                
+        return best_class
+    
     def detect_image(self, image):
         start = timer()
 
