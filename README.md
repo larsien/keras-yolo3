@@ -4,9 +4,13 @@
 
 ## Introduction
 
-A Keras implementation of YOLOv3 (Tensorflow backend) inspired by [allanzelener/YAD2K](https://github.com/allanzelener/YAD2K).
+For KaggleKorea 3rd competition Keras implementation of YOLOv3 (Tensorflow backend). Forked from github.com/qqwweee/keras-yolo3
 
-
+## Added features 
+* Add checkpoint code : load to latest model weight
+* Add class.txt : car labels
+* Add train.txt : train file format 
+* history file : download this file from [here](https://drive.google.com/file/d/1GIiMiaw5tW9b2aMitDBH3BJfFWqwHRRG/view)
 ---
 
 ## Quick Start
