@@ -4,7 +4,9 @@
 
 ## Introduction
 
-For KaggleKorea 3rd competition Keras implementation of YOLOv3 (Tensorflow backend). Forked from github.com/qqwweee/keras-yolo3
+For KaggleKorea 3rd competition Keras implementation of YOLOv3 (Tensorflow backend). 
+
+Forked from github.com/qqwweee/keras-yolo3
 
 ## Added features 
 * Add checkpoint code : load to latest model weight
