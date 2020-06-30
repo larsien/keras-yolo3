@@ -8,6 +8,9 @@ For KaggleKorea 3rd competition Keras implementation of YOLOv3 (Tensorflow backe
 
 Forked from github.com/qqwweee/keras-yolo3
 
+## Kaggle notebook 
+https://www.kaggle.com/larsien/kagglekorea3rdyolov3implementation
+
 ## Added features 
 * Add checkpoint code : load to latest model weight
 * Add class.txt : car labels
